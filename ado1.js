@@ -6,7 +6,7 @@
  * @return {Array} Os nomes dos alunos que fizeram este exercício.
  */
 function nomesDosAlunos() {
-    return [ "João da Silva", "Maria da Silva" ];
+    return [ "Cristian martini" ];
 }
 
 // Implemente as funções abaixo, conforme pede o enunciado.
