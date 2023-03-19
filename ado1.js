@@ -6,7 +6,7 @@
  * @return {Array} Os nomes dos alunos que fizeram este exercício.
  */
 function nomesDosAlunos() {
-    return [ "Cristian martini" ];
+    return [ "Cristian Martini" ];
 }
 
 // Implemente as funções abaixo, conforme pede o enunciado.
@@ -48,7 +48,10 @@ function maiorDosDoisSimplificado(a, b) {
  * @return {number} O resultado da operação.
  */
 function maiorDosQuatro(a, b, c, d) {
-    naoFizIssoAinda();
+   if (a >= b && a >= c  && a >= d) return a;
+   if ( b >= c && b >= d && b >= a) return b;
+   if ( c >= d && c >= a && c >= b ) return c;
+   return d;
 }
 
 // EXERCÍCIO 2.
@@ -74,13 +77,46 @@ function maiorDosQuatro(a, b, c, d) {
  * Ah, as letras sempre devem ser maiúsculas. Em caso de minúsculas (ou símbolos, ou palavras com várias letras,
  * ou qualquer outra coisa), retorne undefined também.
  *
- * @param {String} operacao A letra que identifica a operação a ser realizada.
+ * @param {String} operacao A letra que identifica a operação a ser realizada.0
  * @param {number} numero1 O primeiro operando.
  * @param {number} numero2 O segundo operando.
  * @return {number} O resultado da operação.
  */
 function operacoesBasicas(operacao, numero1, numero2) {
-    naoFizIssoAinda();
+    if(operacao === "A"){
+        return numero1+numero2;
+    }
+    else if (operacao === "S"){
+        return numero2 - numero1;
+    }
+    else if (operacao === "M"){
+        return numero1* numero2;
+    }
+    else if( operacao === "D"){
+        if (numero2 === 0){
+            return NaN;
+        }
+        else        
+        return numero1 / numero2;
+    }
+    else if(operacao === "P"){
+        if (numero1 === 0 && numero2 === 0){
+            return NaN; 
+        }
+       
+        else if (numero1 ===0 && numero2 >0){
+            return NaN;
+        }
+        
+        else if(numero1 < 0 && !Number.isInteger(numero2 )){
+            return NaN;
+        }
+        else {
+             return numero1** numero2;
+
+        }
+       return undefined;
+    }
 }
 
 // EXERCÍCIO 3.
