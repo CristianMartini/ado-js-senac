@@ -87,7 +87,7 @@ function operacoesBasicas(operacao, numero1, numero2) {
         return numero1+numero2;
     }
     else if (operacao === "S"){
-        return numero2 - numero1;
+        return numero1 - numero2;
     }
     else if (operacao === "M"){
         return numero1* numero2;
