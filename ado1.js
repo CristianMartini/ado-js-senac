@@ -104,20 +104,26 @@ function operacoesBasicas(operacao, numero1, numero2) {
             return NaN; 
         }
        
-        else if (numero1 ===0 && numero2 >0){
+        else if (numero1 ===0 && numero2 < 0){
             return NaN;
         }
         
-        else if(numero1 < 0 && !Number.isInteger(numero2 )){
+        else if(numero1 > 0 && !Number.isInteger(numero2 )){
             return NaN;
         }
-        else {
-             return numero1** numero2;
+        else  {
+             return  Math.pow(numero1, numero2);
 
         }
-       return undefined;
     }
-}
+        else {
+            return undefined;
+        }
+            
+        
+      
+    }
+
 
 // EXERCÍCIO 3.
 /**
