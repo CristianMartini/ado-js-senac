@@ -104,7 +104,7 @@ function operacoesBasicas(operacao, numero1, numero2) {
             return NaN; 
         }
        
-        else if (numero1 ===0 && numero2 < 0){
+        else if (numero1 === 0 && numero2 < 0){
             return NaN;
         }
         
@@ -118,10 +118,7 @@ function operacoesBasicas(operacao, numero1, numero2) {
     }
         else {
             return undefined;
-        }
-            
-        
-      
+        } 
     }
 
 
@@ -142,9 +139,11 @@ function operacoesBasicas(operacao, numero1, numero2) {
  * @param {*} elemento2 O segundo operando.
  * @return {String} A mensagem com o resultado da comparação.
  */
-function comparadorBasico(elemento1, elemento2) {
-    naoFizIssoAinda();
-}
+function comparadorBasico(elemento1, elemento2)  {
+     naoFizIssoAinda();
+} 
+   
+
 
 // EXERCÍCIO 4.
 /**
@@ -160,7 +159,8 @@ function comparadorBasico(elemento1, elemento2) {
  * @return {String} String com o primeiro nome apenas.
  */
 function primeiroNome(nomeCompleto) {
-    naoFizIssoAinda();
+    let nomeSeparado = nomeCompleto.split(" ");
+        return nomeSeparado[0];
 }
 
 // EXERCÍCIO 5.
