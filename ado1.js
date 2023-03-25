@@ -393,9 +393,21 @@ function acharPares(vetor) {
  * @param {number} pessoa.altura A altura da pessoa em metros.
  * @return {String} Estado do peso da pessoa.
  */
-function calcularImc(pessoa) {
-    naoFizIssoAinda();
-}
+     function calcularImc(pessoa) {
+    let imc = pessoa.peso / pessoa.altura ** 2 ;
+    if(imc < 18.5) return "Abaixo do peso";
+    else if(imc >= 18.5 && imc < 25) return "Normal";
+    else if(imc >= 25 && imc < 30) return "Excesso de peso";
+    else if(imc >= 30 && imc < 35) return "Obesidade leve (Grau I)";
+    else if(imc >= 35 && imc < 40) return "Obesidade severa (Grau II)";
+    else if(imc >= 40) return "Obesidade mórbida (Grau III)";
+        }
+
+
+
+
+
+
 
 // EXERCÍCIO 12.
 /**
