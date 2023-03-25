@@ -294,11 +294,10 @@ function dataValida(data) {
  */
 function converteDataParaFormaCompleta(data) {
     if (!dataValida(data)){
-        return "Data invalida";
+        return "Data inválida";
         
     }
-    
-    let dia = parseInt(data.substring(0, 2), 10);
+    let dia = parseInt(data.substring(0, 2), 10) ;
     let mes = parseInt(data.substring(3, 5), 10)-1;
     let ano = parseInt(data.substring(6), 10);
     let meses=["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
@@ -323,9 +322,13 @@ function converteDataParaFormaCompleta(data) {
  * @return {number} O somatório de valores pares entre os dois números, contando com eles.
  */
 function somadorPares(inicio, fim) {
-    naoFizIssoAinda();
-}
-
+    let numPar= 0
+    for ( let i= inicio; i <= fim ; i++)
+    if (i % 2 === 0){
+        numPar += i;
+    }
+    return numPar
+ }
 // EXERCÍCIO 9.
 /**
  * Recebe um vetor de números e retorna o menor elemento do vetor.
@@ -334,7 +337,16 @@ function somadorPares(inicio, fim) {
  * @return {number|undefined} O menor valor do vetor ou undefined se o vetor estiver vazio.
  */
 function acharMenor(vetor) {
-    naoFizIssoAinda();
+  if(vetor.length ===0){ 
+  return undefined;
+}
+    let menorNumero = vetor[0];
+    for (let i = 1; i < vetor.length; i++){
+        if (vetor[i]< menorNumero){
+            menorNumero= vetor[i];
+        }
+    }
+    return menorNumero
 }
 
 // EXERCÍCIO 10.
@@ -345,8 +357,19 @@ function acharMenor(vetor) {
  * @return {Array<number>} O vetor contendo apenas números pares do original (ou vazio se não houver nenhum).
  */
 function acharPares(vetor) {
-    naoFizIssoAinda();
-}
+    let numPares= [];
+    for (let i = 0; i < vetor.length;i++){
+        if (vetor[i] % 2 === 0){
+      numPares.push (vetor[i]);
+    }
+    }
+    
+        return numPares;
+    }
+
+
+
+
 
 // EXERCÍCIO 11.
 /**
