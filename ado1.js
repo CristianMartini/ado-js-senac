@@ -139,11 +139,25 @@ function operacoesBasicas(operacao, numero1, numero2) {
  * @param {*} elemento2 O segundo operando.
  * @return {String} A mensagem com o resultado da comparação.
  */
-function comparadorBasico(elemento1, elemento2)  {
-     naoFizIssoAinda();
-} 
-   
 
+function determinarTipo(elemento) {
+    if (elemento === null) return "null";
+    if (typeof elemento !== "object") return typeof elemento;
+return elemento.constructor.name;
+    }
+function comparadorBasico(elemento1, elemento2) { 
+    let tipoElemento1 = determinarTipo (elemento1);
+    let tipoElemento2 = determinarTipo(elemento2);
+
+    if (elemento1 === elemento2) {
+        return "Elemento " + elemento1 + " (" + tipoElemento1 + ") é estritamente igual ao elemento " + elemento2 + " (" + tipoElemento2 + ").";
+      } else if (elemento1 == elemento2) {
+        return "Elemento " + elemento1 + " (" + tipoElemento1 + ") é equivalente ao elemento " + elemento2 + " (" + tipoElemento2 + ").";
+      } else {
+        return "Elemento " + elemento1 + " (" + tipoElemento1 + ") é diferente do elemento " + elemento2 + " (" + tipoElemento2 + ").";
+      }
+       }
+    
 
 // EXERCÍCIO 4.
 /**
@@ -178,7 +192,15 @@ function primeiroNome(nomeCompleto) {
  * @return {String} String com o primeiro nome conforme dado e o segundo nome abreviado.
  */
 function abreviadorNomes(nomeCompleto) {
-    naoFizIssoAinda();
+    let primeiroNome = nomeCompleto.split(" ");
+    if (primeiroNome.length=== 1 ){
+        return primeiroNome[0];
+    }
+        else{
+            let sobrenome= primeiroNome[primeiroNome.length -1];
+            return primeiroNome[0]+" "+ sobrenome.charAt(0)+".";
+         }
+    
 }
 
 // EXERCÍCIO 6.
