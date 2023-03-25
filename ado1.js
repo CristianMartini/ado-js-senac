@@ -223,8 +223,55 @@ function abreviadorNomes(nomeCompleto) {
  * @return {boolean} Verdadeiro se a data for válida, falso em caso contrário.
  */
 function dataValida(data) {
-    naoFizIssoAinda();
-}
+    if (data.length !== 10) {
+      return false;
+    }
+    if (data.charAt(1) === '/') {
+        data = '0' + data;
+      }
+    let dia = parseInt(data.substring(0, 2), 10);
+    let mes = parseInt(data.substring(3, 5), 10);
+    let ano = parseInt(data.substring(6), 10);
+  
+    if (isNaN(dia) || isNaN(mes) || isNaN(ano)) {
+      return false;
+    }
+  
+    if (data.charAt(2) !== "/" || data.charAt(5) !== "/") {
+      return false;
+    }
+  
+    if (dia < 1 || dia > 31 || mes < 1 || mes > 12) {
+      return false;
+    }
+  
+    let maxDias = [
+      31, /*janeiro*/
+      anoBissexto(ano) ? 29 : 28,/*fevereiro*/
+       31, 30,  31, 30, 31, 31, 30, 31,30, 31];
+  
+    if (dia > maxDias[mes - 1]) {
+      return false;
+    }
+  
+    return true;
+  }
+  
+  function anoBissexto(ano) {
+    if (ano <= 1) {
+        return false;
+    }else if (ano % 4 !== 0) {
+      return false;
+    } else if (ano % 100 !== 0) {
+      return true;
+    } else if (ano % 400 !== 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  
+
 
 // EXERCÍCIO 7.
 /**
@@ -246,7 +293,19 @@ function dataValida(data) {
  * @return {String} Data no formato "Dia de Nome-do-Mês-por-Extenso de Ano" ou "Data inválida".
  */
 function converteDataParaFormaCompleta(data) {
-    naoFizIssoAinda();
+    if (!dataValida(data)){
+        return "Data invalida";
+        
+    }
+    
+    let dia = parseInt(data.substring(0, 2), 10);
+    let mes = parseInt(data.substring(3, 5), 10)-1;
+    let ano = parseInt(data.substring(6), 10);
+    let meses=["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+    let nomeMes= meses[mes];
+    let dataCerta = dia +" de "+ nomeMes +" de "+ ano;
+     return dataCerta;
+
 }
 
 // EXERCÍCIO 8.
