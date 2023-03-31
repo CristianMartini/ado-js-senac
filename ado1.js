@@ -245,6 +245,7 @@ function dataValida(data) {
       return false;
     }
   
+    
     let maxDias = [
       31, /*janeiro*/
       anoBissexto(ano) ? 29 : 28,/*fevereiro*/
@@ -258,7 +259,7 @@ function dataValida(data) {
   }
   
   function anoBissexto(ano) {
-    if (ano <= 1) {
+    if (ano >= 1) {
         return false;
     }else if (ano % 4 !== 0) {
       return false;
@@ -269,6 +270,7 @@ function dataValida(data) {
     } else {
       return true;
     }
+    
   }
   
 
@@ -420,7 +422,11 @@ function acharPares(vetor) {
  * @return {Array<String>} Um array com as palavras da frase.
  */
 function obterPalavras(frase) {
-    naoFizIssoAinda();
+    if (!frase){
+        return [];
+    }
+    let palavras= frase. trim().split(/\s+/);
+    return palavras;
 }
 
 // EXERCÍCIO 13.
@@ -442,8 +448,13 @@ function obterPalavras(frase) {
  * @return {String} O texto resultante da transformação com rot13.
  */
 function rot13(texto) {
-    naoFizIssoAinda();
-}
+   
+        return texto.replace(/[a-zA-Z]/g, function(chr) {
+          let start = chr <= 'Z' ? 65 : 97;
+          return String.fromCharCode(start + (chr.charCodeAt(0) - start + 13) % 26);
+        });
+      }
+
 
 // EXERCÍCIO 14.
 /**
@@ -455,8 +466,13 @@ function rot13(texto) {
  * 3. Colocar o resultado no segundo <textarea>.
  */
 function fazerRot13() {
-    naoFizIssoAinda();
+    let imputText= document.getElementById("entra-rot13").value;
+	let outputText = rot13(imputText);
+
+	document.getElementById("sai-rot13").value = outputText;
 }
+
+
 
 // EXERCÍCIO 15.
 /**
@@ -473,7 +489,22 @@ function fazerRot13() {
  * @return {String} O tipo de triângulo resultante.
  */
 function tipoTriangulo(a, b, c) {
-    naoFizIssoAinda();
+    if (a <= 0 || b <= 0 || c <= 0) {
+        return "Não é um triângulo";
+      }
+    
+      if (a + b <= c || a + c <= b || b + c <= a) {
+        return "Não é um triângulo";
+    }
+    if( a==b  && a== c){
+        return "Equilátero"
+        }else if(a == b ||a == c ||b == c){
+            return "Isósceles";
+        }else{
+            return "Escaleno"
+        }
+       
+    
 }
 
 // EXERCÍCIO 16.
