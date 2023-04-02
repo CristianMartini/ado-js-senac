@@ -297,8 +297,8 @@ function dataValida(data) {
 function converteDataParaFormaCompleta(data) {
     if (!dataValida(data)){
         return "Data inválida";
-        
-    }
+       }
+       
     let dia = parseInt(data.substring(0, 2), 10) ;
     let mes = parseInt(data.substring(3, 5), 10)-1;
     let ano = parseInt(data.substring(6), 10);
@@ -306,7 +306,7 @@ function converteDataParaFormaCompleta(data) {
     let nomeMes= meses[mes];
     let dataCerta = dia +" de "+ nomeMes +" de "+ ano;
      return dataCerta;
-
+    
 }
 
 // EXERCÍCIO 8.
@@ -496,12 +496,12 @@ function tipoTriangulo(a, b, c) {
       if (a + b <= c || a + c <= b || b + c <= a) {
         return "Não é um triângulo";
     }
-    if( a==b  && a== c){
+    if( a===b  && b === c){
         return "Equilátero"
-        }else if(a == b ||a == c ||b == c){
+        }else if(a === b ||a === c ||b === c){
             return "Isósceles";
         }else{
-            return "Escaleno"
+            return "Escaleno";
         }
        
     
@@ -519,9 +519,17 @@ function tipoTriangulo(a, b, c) {
  * @param {number} a O tamanho do terceiro lado do triângulo.
  * @return {number|undefined} A área do triângulo resultante ou undefined se não formar um triângulo.
  */
-function areaTriangulo(a, b, c) {
-    naoFizIssoAinda();
-}
+function areaTriangulo(a, b, c) { 
+     
+    if (tipoTriangulo(a, b, c) === "Não é um triângulo") {
+        return undefined;
+        }
+        const s = (a + b + c) / 2;
+        const area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+        return area;
+        }
+  
+
 
 // EXERCÍCIO 17.
 /**
@@ -542,21 +550,26 @@ function areaTriangulo(a, b, c) {
  * Dica: Procure ver funções de manipulação de DOM nas partes que faltam (o que está como naoFizIssoAinda()).
  */
 function verificarTriangulo() {
-    // Comece a mexer no código daqui para baixo.
+    // Comece a mexer no código daqui para baixo. 
     let texto1, texto2;
     try {
-        const a = lerNumero(naoFizIssoAinda(), naoFizIssoAinda());
-        const b = lerNumero(naoFizIssoAinda(), "Informe o número B corretamente.");
-        const c = lerNumero(naoFizIssoAinda(), naoFizIssoAinda());
-        texto1 = naoFizIssoAinda(a, b, c);
-        // Fazer algo com o texto2.
-    } catch (e) {
+    const a = lerNumero(document.getElementById("ladoA").value, {erro: "Informe o número A corretamente."});
+    const b = lerNumero(document.getElementById("ladoB").value, {erro: "Informe o número B corretamente."});
+    const c = lerNumero(document.getElementById("ladoC").value, {erro:"Informe o número C corretamente."});
+    texto1 = tipoTriangulo(a, b, c);
+    if (texto2 = areaTriangulo(a, b, c) ==undefined){
+        texto2 = "";
+    }
+    else{
+        texto2 = areaTriangulo(a, b, c);
+    } } catch (e) {
         texto1 = e.message;
         // Fazer algo aqui.
+		texto2 = "";
     }
-    naoFizIssoAinda();
+   	document.getElementById("tipoTriangulo").value = texto1;
+	document.getElementById("areaTriangulo").value = texto2;
 }
-
 // EXERCÍCIO 18.
 /**
  * Escreva uma função que recebe um array com 52 cartas de baralho já devidamente embaralhado e
