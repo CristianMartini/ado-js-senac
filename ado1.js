@@ -6,7 +6,7 @@
  * @return {Array} Os nomes dos alunos que fizeram este exercício.
  */
 function nomesDosAlunos() {
-    return [ "Cristian Martini" ];
+    return ["Cristian Martini"];
 }
 
 // Implemente as funções abaixo, conforme pede o enunciado.
@@ -48,10 +48,10 @@ function maiorDosDoisSimplificado(a, b) {
  * @return {number} O resultado da operação.
  */
 function maiorDosQuatro(a, b, c, d) {
-   if (a >= b && a >= c  && a >= d) return a;
-   if ( b >= c && b >= d && b >= a) return b;
-   if ( c >= d && c >= a && c >= b ) return c;
-   return d;
+    if (a >= b && a >= c && a >= d) return a;
+    if (b >= c && b >= d && b >= a) return b;
+    if (c >= d && c >= a && c >= b) return c;
+    return d;
 }
 
 // EXERCÍCIO 2.
@@ -83,43 +83,43 @@ function maiorDosQuatro(a, b, c, d) {
  * @return {number} O resultado da operação.
  */
 function operacoesBasicas(operacao, numero1, numero2) {
-    if(operacao === "A"){
-        return numero1+numero2;
+    if (operacao === "A") {
+        return numero1 + numero2;
     }
-    else if (operacao === "S"){
+    else if (operacao === "S") {
         return numero1 - numero2;
     }
-    else if (operacao === "M"){
-        return numero1* numero2;
+    else if (operacao === "M") {
+        return numero1 * numero2;
     }
-    else if( operacao === "D"){
-        if (numero2 === 0){
+    else if (operacao === "D") {
+        if (numero2 === 0) {
             return NaN;
         }
-        else        
-        return numero1 / numero2;
+        else
+            return numero1 / numero2;
     }
-    else if(operacao === "P"){
-        if (numero1 === 0 && numero2 === 0){
-            return NaN; 
-        }
-       
-        else if (numero1 === 0 && numero2 < 0){
+    else if (operacao === "P") {
+        if (numero1 === 0 && numero2 === 0) {
             return NaN;
         }
-        
-        else if(numero1 > 0 && !Number.isInteger(numero2 )){
+
+        else if (numero1 === 0 && numero2 < 0) {
             return NaN;
         }
-        else  {
-             return  Math.pow(numero1, numero2);
+
+        else if (numero1 > 0 && !Number.isInteger(numero2)) {
+            return NaN;
+        }
+        else {
+            return Math.pow(numero1, numero2);
 
         }
     }
-        else {
-            return undefined;
-        } 
+    else {
+        return undefined;
     }
+}
 
 
 // EXERCÍCIO 3.
@@ -143,21 +143,21 @@ function operacoesBasicas(operacao, numero1, numero2) {
 function determinarTipo(elemento) {
     if (elemento === null) return "null";
     if (typeof elemento !== "object") return typeof elemento;
-return elemento.constructor.name;
-    }
-function comparadorBasico(elemento1, elemento2) { 
-    let tipoElemento1 = determinarTipo (elemento1);
+    return elemento.constructor.name;
+}
+function comparadorBasico(elemento1, elemento2) {
+    let tipoElemento1 = determinarTipo(elemento1);
     let tipoElemento2 = determinarTipo(elemento2);
 
     if (elemento1 === elemento2) {
         return "Elemento " + elemento1 + " (" + tipoElemento1 + ") é estritamente igual ao elemento " + elemento2 + " (" + tipoElemento2 + ").";
-      } else if (elemento1 == elemento2) {
+    } else if (elemento1 == elemento2) {
         return "Elemento " + elemento1 + " (" + tipoElemento1 + ") é equivalente ao elemento " + elemento2 + " (" + tipoElemento2 + ").";
-      } else {
+    } else {
         return "Elemento " + elemento1 + " (" + tipoElemento1 + ") é diferente do elemento " + elemento2 + " (" + tipoElemento2 + ").";
-      }
-       }
-    
+    }
+}
+
 
 // EXERCÍCIO 4.
 /**
@@ -174,7 +174,7 @@ function comparadorBasico(elemento1, elemento2) {
  */
 function primeiroNome(nomeCompleto) {
     let nomeSeparado = nomeCompleto.split(" ");
-        return nomeSeparado[0];
+    return nomeSeparado[0];
 }
 
 // EXERCÍCIO 5.
@@ -193,14 +193,14 @@ function primeiroNome(nomeCompleto) {
  */
 function abreviadorNomes(nomeCompleto) {
     let primeiroNome = nomeCompleto.split(" ");
-    if (primeiroNome.length=== 1 ){
+    if (primeiroNome.length === 1) {
         return primeiroNome[0];
     }
-        else{
-            let sobrenome= primeiroNome[primeiroNome.length -1];
-            return primeiroNome[0]+" "+ sobrenome.charAt(0)+".";
-         }
-    
+    else {
+        let sobrenome = primeiroNome[primeiroNome.length - 1];
+        return primeiroNome[0] + " " + sobrenome.charAt(0) + ".";
+    }
+
 }
 
 // EXERCÍCIO 6.
@@ -224,55 +224,55 @@ function abreviadorNomes(nomeCompleto) {
  */
 function dataValida(data) {
     if (data.length !== 10) {
-      return false;
+        return false;
     }
     if (data.charAt(1) === '/') {
         data = '0' + data;
-      }
+    }
     let dia = parseInt(data.substring(0, 2), 10);
     let mes = parseInt(data.substring(3, 5), 10);
     let ano = parseInt(data.substring(6), 10);
-  
+
     if (isNaN(dia) || isNaN(mes) || isNaN(ano)) {
-      return false;
+        return false;
     }
-  
+
     if (data.charAt(2) !== "/" || data.charAt(5) !== "/") {
-      return false;
+        return false;
     }
-  
+
     if (dia < 1 || dia > 31 || mes < 1 || mes > 12) {
-      return false;
+        return false;
     }
-  
-    
+
+
     let maxDias = [
-      31, /*janeiro*/
-      anoBissexto(ano) ? 29 : 28,/*fevereiro*/
-       31, 30,  31, 30, 31, 31, 30, 31,30, 31];
-  
+        31, /*janeiro*/
+        anoBissexto(ano) ? 29 : 28,/*fevereiro*/
+        31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
     if (dia > maxDias[mes - 1]) {
-      return false;
+        return false;
     }
-  
+
     return true;
-  }
-  
-  function anoBissexto(ano) {
+}
+
+function anoBissexto(ano) {
     if (ano >= 1) {
         return false;
-    }else if (ano % 4 !== 0) {
-      return false;
+    } else if (ano % 4 !== 0) {
+        return false;
     } else if (ano % 100 !== 0) {
-      return true;
+        return true;
     } else if (ano % 400 !== 0) {
-      return false;
+        return false;
     } else {
-      return true;
+        return true;
     }
-    
-  }
-  
+
+}
+
 
 
 // EXERCÍCIO 7.
@@ -295,18 +295,18 @@ function dataValida(data) {
  * @return {String} Data no formato "Dia de Nome-do-Mês-por-Extenso de Ano" ou "Data inválida".
  */
 function converteDataParaFormaCompleta(data) {
-    if (!dataValida(data)){
+    if (!dataValida(data)) {
         return "Data inválida";
-       }
-       
-    let dia = parseInt(data.substring(0, 2), 10) ;
-    let mes = parseInt(data.substring(3, 5), 10)-1;
+    }
+
+    let dia = parseInt(data.substring(0, 2), 10);
+    let mes = parseInt(data.substring(3, 5), 10) - 1;
     let ano = parseInt(data.substring(6), 10);
-    let meses=["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
-    let nomeMes= meses[mes];
-    let dataCerta = dia +" de "+ nomeMes +" de "+ ano;
-     return dataCerta;
-    
+    let meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+    let nomeMes = meses[mes];
+    let dataCerta = dia + " de " + nomeMes + " de " + ano;
+    return dataCerta;
+
 }
 
 // EXERCÍCIO 8.
@@ -324,13 +324,13 @@ function converteDataParaFormaCompleta(data) {
  * @return {number} O somatório de valores pares entre os dois números, contando com eles.
  */
 function somadorPares(inicio, fim) {
-    let numPar= 0
-    for ( let i= inicio; i <= fim ; i++)
-    if (i % 2 === 0){
-        numPar += i;
-    }
+    let numPar = 0
+    for (let i = inicio; i <= fim; i++)
+        if (i % 2 === 0) {
+            numPar += i;
+        }
     return numPar
- }
+}
 // EXERCÍCIO 9.
 /**
  * Recebe um vetor de números e retorna o menor elemento do vetor.
@@ -339,13 +339,13 @@ function somadorPares(inicio, fim) {
  * @return {number|undefined} O menor valor do vetor ou undefined se o vetor estiver vazio.
  */
 function acharMenor(vetor) {
-  if(vetor.length ===0){ 
-  return undefined;
-}
+    if (vetor.length === 0) {
+        return undefined;
+    }
     let menorNumero = vetor[0];
-    for (let i = 1; i < vetor.length; i++){
-        if (vetor[i]< menorNumero){
-            menorNumero= vetor[i];
+    for (let i = 1; i < vetor.length; i++) {
+        if (vetor[i] < menorNumero) {
+            menorNumero = vetor[i];
         }
     }
     return menorNumero
@@ -359,15 +359,15 @@ function acharMenor(vetor) {
  * @return {Array<number>} O vetor contendo apenas números pares do original (ou vazio se não houver nenhum).
  */
 function acharPares(vetor) {
-    let numPares= [];
-    for (let i = 0; i < vetor.length;i++){
-        if (vetor[i] % 2 === 0){
-      numPares.push (vetor[i]);
+    let numPares = [];
+    for (let i = 0; i < vetor.length; i++) {
+        if (vetor[i] % 2 === 0) {
+            numPares.push(vetor[i]);
+        }
     }
-    }
-    
-        return numPares;
-    }
+
+    return numPares;
+}
 
 
 
@@ -395,15 +395,15 @@ function acharPares(vetor) {
  * @param {number} pessoa.altura A altura da pessoa em metros.
  * @return {String} Estado do peso da pessoa.
  */
-     function calcularImc(pessoa) {
-    let imc = pessoa.peso / pessoa.altura ** 2 ;
-    if(imc < 18.5) return "Abaixo do peso";
-    else if(imc >= 18.5 && imc < 25) return "Normal";
-    else if(imc >= 25 && imc < 30) return "Excesso de peso";
-    else if(imc >= 30 && imc < 35) return "Obesidade leve (Grau I)";
-    else if(imc >= 35 && imc < 40) return "Obesidade severa (Grau II)";
-    else if(imc >= 40) return "Obesidade mórbida (Grau III)";
-        }
+function calcularImc(pessoa) {
+    let imc = pessoa.peso / pessoa.altura ** 2;
+    if (imc < 18.5) return "Abaixo do peso";
+    else if (imc >= 18.5 && imc < 25) return "Normal";
+    else if (imc >= 25 && imc < 30) return "Excesso de peso";
+    else if (imc >= 30 && imc < 35) return "Obesidade leve (Grau I)";
+    else if (imc >= 35 && imc < 40) return "Obesidade severa (Grau II)";
+    else if (imc >= 40) return "Obesidade mórbida (Grau III)";
+}
 
 
 
@@ -422,10 +422,10 @@ function acharPares(vetor) {
  * @return {Array<String>} Um array com as palavras da frase.
  */
 function obterPalavras(frase) {
-    if (!frase){
+    if (!frase) {
         return [];
     }
-    let palavras= frase. trim().split(/\s+/);
+    let palavras = frase.trim().split(/\s+/);
     return palavras;
 }
 
@@ -448,12 +448,12 @@ function obterPalavras(frase) {
  * @return {String} O texto resultante da transformação com rot13.
  */
 function rot13(texto) {
-   
-        return texto.replace(/[a-zA-Z]/g, function(chr) {
-          let start = chr <= 'Z' ? 65 : 97;
-          return String.fromCharCode(start + (chr.charCodeAt(0) - start + 13) % 26);
-        });
-      }
+
+    return texto.replace(/[a-zA-Z]/g, function (chr) {
+        let start = chr <= 'Z' ? 65 : 97;
+        return String.fromCharCode(start + (chr.charCodeAt(0) - start + 13) % 26);
+    });
+}
 
 
 // EXERCÍCIO 14.
@@ -466,10 +466,10 @@ function rot13(texto) {
  * 3. Colocar o resultado no segundo <textarea>.
  */
 function fazerRot13() {
-    let imputText= document.getElementById("entra-rot13").value;
-	let outputText = rot13(imputText);
+    let imputText = document.getElementById("entra-rot13").value;
+    let outputText = rot13(imputText);
 
-	document.getElementById("sai-rot13").value = outputText;
+    document.getElementById("sai-rot13").value = outputText;
 }
 
 
@@ -491,20 +491,20 @@ function fazerRot13() {
 function tipoTriangulo(a, b, c) {
     if (a <= 0 || b <= 0 || c <= 0) {
         return "Não é um triângulo";
-      }
-    
-      if (a + b <= c || a + c <= b || b + c <= a) {
+    }
+
+    if (a + b <= c || a + c <= b || b + c <= a) {
         return "Não é um triângulo";
     }
-    if( a===b  && b === c){
+    if (a === b && b === c) {
         return "Equilátero"
-        }else if(a === b ||a === c ||b === c){
-            return "Isósceles";
-        }else{
-            return "Escaleno";
-        }
-       
-    
+    } else if (a === b || a === c || b === c) {
+        return "Isósceles";
+    } else {
+        return "Escaleno";
+    }
+
+
 }
 
 // EXERCÍCIO 16.
@@ -519,16 +519,16 @@ function tipoTriangulo(a, b, c) {
  * @param {number} a O tamanho do terceiro lado do triângulo.
  * @return {number|undefined} A área do triângulo resultante ou undefined se não formar um triângulo.
  */
-function areaTriangulo(a, b, c) { 
-     
+function areaTriangulo(a, b, c) {
+
     if (tipoTriangulo(a, b, c) === "Não é um triângulo") {
         return undefined;
-        }
-        const s = (a + b + c) / 2;
-        const area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
-        return area;
-        }
-  
+    }
+    const s = (a + b + c) / 2;
+    const area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+    return area;
+}
+
 
 
 // EXERCÍCIO 17.
@@ -553,22 +553,23 @@ function verificarTriangulo() {
     // Comece a mexer no código daqui para baixo. 
     let texto1, texto2;
     try {
-    const a = lerNumero(document.getElementById("ladoA").value, {erro: "Informe o número A corretamente."});
-    const b = lerNumero(document.getElementById("ladoB").value, {erro: "Informe o número B corretamente."});
-    const c = lerNumero(document.getElementById("ladoC").value, {erro:"Informe o número C corretamente."});
-    texto1 = tipoTriangulo(a, b, c);
-    if (texto2 = areaTriangulo(a, b, c) ==undefined){
-        texto2 = "";
-    }
-    else{
-        texto2 = areaTriangulo(a, b, c);
-    } } catch (e) {
+        const a = lerNumero(document.getElementById("ladoA").value, { erro: "Informe o número A corretamente." });
+        const b = lerNumero(document.getElementById("ladoB").value, { erro: "Informe o número B corretamente." });
+        const c = lerNumero(document.getElementById("ladoC").value, { erro: "Informe o número C corretamente." });
+        texto1 = tipoTriangulo(a, b, c);
+        if (texto2 = areaTriangulo(a, b, c) == undefined) {
+            texto2 = "";
+        }
+        else {
+            texto2 = areaTriangulo(a, b, c);
+        }
+    } catch (e) {
         texto1 = e.message;
         // Fazer algo aqui.
-		texto2 = "";
+        texto2 = "";
     }
-   	document.getElementById("tipoTriangulo").value = texto1;
-	document.getElementById("areaTriangulo").value = texto2;
+    document.getElementById("tipoTriangulo").value = texto1;
+    document.getElementById("areaTriangulo").value = texto2;
 }
 // EXERCÍCIO 18.
 /**
@@ -592,7 +593,17 @@ function verificarTriangulo() {
  * @param {Array<Object>} jogadores Um array com os jogadores que devem receber as cartas.
  */
 function distribuirCartas(baralho, jogadores) {
-    naoFizIssoAinda();
+    const carta = ["K-♠", "Q-♠", "J-♠", "10-♠", "9-♠", "8-♠", "7-♠", "6-♠", "5-♠", "4-♠", "3-♠", "2-♠", "A-♠", "K-♡", "Q-♡", "J-♡", "10-♡", "9-♡", "8-♡", "7-♡", "6-♡", "5-♡", "4-♡", "3-♡", "2-♡", "A-♡", "K-♣", "Q-♣", "J-♣", "10-♣", "9-♣", "8-♣", "7-♣", "6-♣", "5-♣", "4-♣", "3-♣", "2-♣", "A-♣", "K-♢", "Q-♢", "J-♢", "10-♢", "9-♢", "8-♢", "7-♢", "6-♢", "5-♢", "4-♢", "3-♢", "2-♢", "A-♢"];
+    const numJogadores = jogadores.length;
+    const numCartasPorJogador = 5;
+
+    for (let i = 0; i < numCartasPorJogador; i++) {
+        for (let j = 0; j < numJogadores; j++) {
+            const carta = baralho.shift();
+            jogadores[j].cartas.push(carta);
+
+        }
+    }
 }
 
 // EXERCÍCIO 19.
@@ -605,8 +616,24 @@ function distribuirCartas(baralho, jogadores) {
  * @return {String|undefined} O nome do jogador com o ás de ouros ou undefined se ninguém tiver o ás de ouros.
  */
 function asDeOuros(jogadores) {
-    naoFizIssoAinda();
+
+    const numJogadores = jogadores.length;
+
+    for (let i = 0; i < numJogadores; i++) {
+        const cartas = jogadores[i].cartas;
+
+        for (let j = 0; j < cartas.length; j++) {
+            const carta = cartas[j];
+
+            if (carta === "A-♢") {
+                return jogadores[i].nome;
+            }
+        }
+    }
+
+    return null;
 }
+
 
 // EXERCÍCIO 20.
 /**
@@ -619,8 +646,12 @@ function asDeOuros(jogadores) {
  * @return {boolean} Verdadeiro se todos tiverem alguma carta real na mão, falso se algum não tiver.
  */
 function todosTemCartasReais(jogadores) {
-    naoFizIssoAinda();
+    const cartasReais = ['J', 'Q', 'K'];
+    return jogadores.every(jogador => {
+        return jogador.cartas.some(carta => cartasReais.includes(carta[0]));
+    });
 }
+
 
 // EXERCÍCIO 21.
 /**
