@@ -665,9 +665,24 @@ function todosTemCartasReais(jogadores) {
  * @return {boolean} Verdadeiro se houverem pelo menos 3 cartas com o mesmo valor na mão, falso em caso contrário.
  */
 function existeTrinca(cartas) {
-    naoFizIssoAinda();
-}
+    const contagemCartas = {};
+    cartas.forEach(carta => {
+        const valor = carta[0];
+        if (contagemCartas[valor]) {
+            contagemCartas[valor]++;
+        } else {
+            contagemCartas[valor] = 1;
+        }
+    });
 
+
+    for (const valor in contagemCartas) {
+        if (contagemCartas[valor] >= 3) {
+            return true;
+        }
+    }
+    return false;
+}
 // EXERCÍCIO 22.
 /**
  * Escreva uma função que recebe uma frase e retorne um objeto (chave-valor) onde as chaves são as palavras e o
@@ -685,8 +700,23 @@ function existeTrinca(cartas) {
  * @return {Object} Um objeto onde as chaves são palavras da frase e os valores são o número de ocorrências na frase.
  */
 function contarPalavras(frase) {
-    naoFizIssoAinda();
+    if (frase.trim() === '') {
+        return {};
+    }
+    const palavras = obterPalavras(frase.toLowerCase());
+    const contagemPalavras = {};
+
+    palavras.forEach(palavra => {
+        if (contagemPalavras[palavra]) {
+            contagemPalavras[palavra]++;
+        } else {
+            contagemPalavras[palavra] = 1;
+        }
+    });
+
+    return contagemPalavras;
 }
+
 
 // EXERCÍCIO 23.
 /**
@@ -701,8 +731,19 @@ function contarPalavras(frase) {
  * @return {Array<number>|undefined} Um array com as soluções reais ou undefined se não for uma equação de segundo grau.
  */
 function bhaskara(a, b, c) {
-    naoFizIssoAinda();
+    if (a === 0) {
+        return undefined;
+    }
+    const delta = b ** 2 - 4 * a * c;
+    if (delta < 0) {
+        return [];
+    }
+    const x1 = (-b - Math.sqrt(delta)) / (2 * a);
+    const x2 = (-b + Math.sqrt(delta)) / (2 * a);
+    const raizes = [x1, x2].sort((a, b) => a - b);
+    return raizes;
 }
+
 
 // EXERCÍCIO 24.
 /**
@@ -725,6 +766,8 @@ function bhaskara(a, b, c) {
 function classificacao(times) {
     naoFizIssoAinda();
 }
+    
+        
 
 // EXERCÍCIO 25.
 /**
