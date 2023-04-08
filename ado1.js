@@ -226,12 +226,10 @@ function dataValida(data) {
     if (data.length !== 10) {
         return false;
     }
-    if (data.charAt(1) === '/') {
-        data = '0' + data;
-    }
+
     let dia = parseInt(data.substring(0, 2), 10);
     let mes = parseInt(data.substring(3, 5), 10);
-    let ano = parseInt(data.substring(6), 10);
+    let ano = parseInt(data.substring(6));
 
     if (isNaN(dia) || isNaN(mes) || isNaN(ano)) {
         return false;
@@ -241,35 +239,25 @@ function dataValida(data) {
         return false;
     }
 
-    if (dia < 1 || dia > 31 || mes < 1 || mes > 12) {
+
+    if (dia < 1 || dia > 31 || mes < 1 || mes > 12 || ano === 0) {
         return false;
     }
 
+    function anoBissexto(ano) {
+        return (ano % 4 === 0 && ano % 100 !== 0) || ano % 400 === 0;
+
+    }
 
     let maxDias = [
-        31, /*janeiro*/
-        anoBissexto(ano) ? 29 : 28,/*fevereiro*/
+        31,/*Janeiro*/
+        anoBissexto(ano) ? 29 : 28,/*Feveriro*/
         31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
     if (dia > maxDias[mes - 1]) {
         return false;
     }
-
     return true;
-}
-
-function anoBissexto(ano) {
-    if (ano >= 1) {
-        return false;
-    } else if (ano % 4 !== 0) {
-        return false;
-    } else if (ano % 100 !== 0) {
-        return true;
-    } else if (ano % 400 !== 0) {
-        return false;
-    } else {
-        return true;
-    }
 
 }
 
@@ -303,6 +291,12 @@ function converteDataParaFormaCompleta(data) {
     let mes = parseInt(data.substring(3, 5), 10) - 1;
     let ano = parseInt(data.substring(6), 10);
     let meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+    if (dia <= 9) {
+        dia = "0" + dia;
+    }
+    if (ano < 2) {
+        ano = "000" + ano
+    }
     let nomeMes = meses[mes];
     let dataCerta = dia + " de " + nomeMes + " de " + ano;
     return dataCerta;
@@ -422,7 +416,7 @@ function calcularImc(pessoa) {
  * @return {Array<String>} Um array com as palavras da frase.
  */
 function obterPalavras(frase) {
-    if (!frase) {
+    if (!frase || !frase.trim()) {
         return [];
     }
     let palavras = frase.trim().split(/\s+/);
@@ -763,11 +757,26 @@ function bhaskara(a, b, c) {
  * @param {Object} times O dicionário contendpo os nomes dos times e o respectivo número de pontos e saldo de gols.
  * @return {Array<string>} Um array com os times na ordem de classificação, do campeão ao lanterna.
  */
-function classificacao(times) {
-    naoFizIssoAinda();
-}
-    
-        
+
+function classificacao(campeonato) {
+    const resultado = [];
+    for (const time in campeonato){
+      resultado.push(time);
+    }
+    return resultado.sort((time1, time2) => {
+      const pontos1 = 3 * campeonato[time1].vitorias + campeonato [time1].empates;
+      const pontos2 = 3 * campeonato[time2].vitorias + campeonato [time2].empates;
+      const saldo1 = campeonato [time1]["saldo-de-gols"];
+      const saldo2 = campeonato [time2]["saldo-de-gols"];
+      if (pontos1 != pontos2) return pontos1 - pontos2;
+      if (saldo1 != saldo2) return saldo1 - saldo2;
+      if (time1 > time2) return 1;
+      if (time1 < time2) return -1;
+      return 0;
+  
+    });
+    }
+
 
 // EXERCÍCIO 25.
 /**
@@ -786,5 +795,15 @@ function classificacao(times) {
  * @returns {Array<string>} As opções corretas de entrega.
  */
 function comoFazerEntrega(array) {
-    naoFizIssoAinda();
+    const opcao1 = array.findIndex((opcao) =>
+        opcao.includes("Eu vou entregar o meu arquivo ado1.js que eu alterei e nada mais.")
+    );
+
+    const opcao2 = array.findIndex((opcao) =>
+        opcao.includes("Eu vou fazer no Git e enviar o link para o professor.")
+    );
+
+    const indexes = [opcao1, opcao2];
+    indexes.sort((a, b) => a - b);
+    return indexes;
 }
